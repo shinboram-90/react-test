@@ -8,7 +8,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 //
 let instance = axios.create({
   baseUrl: URL,
-  timeout: 3000,
+
   headers: `Authorization: Bearer${BEARER_TOKEN}`,
 });
 

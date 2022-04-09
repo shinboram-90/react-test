@@ -14,7 +14,7 @@ const FilmList = () => {
   const [page, setPage] = useState(1);
 
   const moviesList = moviesObject.payload.films.list;
-  const totalPages = moviesObject.payload.films.total; //492 pages in the api
+  const totalPages = moviesObject.payload.films.total; //493 pages in the api
 
   const moviesArray = Object.keys(moviesList).map((key) => {
     return moviesList[key];
