@@ -15,3 +15,12 @@ list-style: none;}
 .App ul{
   padding: 0;
 }
+
+
+.bg__card {
+  background-color: rgb(238,238,238);
+}
+
+.bg__card:hover{
+  background-color: rgb(221,221,221);
+}

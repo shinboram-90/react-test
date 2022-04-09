@@ -1,14 +1,14 @@
 import axios from 'axios';
 const URL = process.env.REACT_APP_API_URL;
-const BEARER_TOKEN = process.env.REACT_APP_BEARER_TOKEN;
 const API_KEY = process.env.REACT_APP_API_KEY;
+const BEARER_TOKEN = process.env.REACT_APP_BEARER_TOKEN;
 
 //
 // TIP : Utiliser une instance avec axios en respectant les usecases (implementer une instance)
 //
 let instance = axios.create({
   baseUrl: URL,
-  timeout: 3000,
+  timeout: 1000,
   headers: `Authorization: Bearer${BEARER_TOKEN}`,
 });
 
@@ -28,4 +28,19 @@ export const getFilmsList = async (page) => {
 
   // TODO : implementer getFilmsList
   //
+};
+
+export const searchMovieByTitle = async (title) => {
+  const apiKeySearch = '?api_key=';
+  const url = `${URL}search/movie${apiKeySearch + API_KEY}&query=${title}`;
+
+  const response = await axios.get(url, instance);
+  if (response) {
+    return {
+      mList: response.data.results,
+      total: response.data.total_pages,
+    };
+  } else {
+    console.log('The search was unsuccessfull');
+  }
 };
