@@ -12,8 +12,8 @@ export const fetchMovies = (page) => (dispatch) => {
   });
 };
 
-export const searchMovies = (title, page) => (dispatch) => {
-  searchMovieByTitle(title, page).then((data) => {
+export const searchMovies = (title) => (dispatch) => {
+  searchMovieByTitle(title).then((data) => {
     dispatch(searchFilms(data));
   });
 };
@@ -23,8 +23,6 @@ export const filmsSlice = createSlice({
   initialState,
   reducers: {
     populateFilms: (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = true;
       state.list = action.payload.mList;
       state.total = action.payload.totalPages;
     },

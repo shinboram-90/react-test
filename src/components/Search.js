@@ -2,38 +2,26 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-
 import { searchMovies } from '../reducers/films';
 import { searchFilms } from '../reducers/films';
 
-import Pagination from '@mui/material/Pagination';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+// Similar to the List, getting the title from the user and doing the search depending on it
+// An error will show when the string is empty because the url needs a string after "query"
 
 const Search = () => {
-  const { payload } = useSelector(searchFilms);
   const [title, setTitle] = useState('');
-  const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
   const moviesObject = useSelector(searchFilms);
 
   const moviesList = moviesObject.payload.films.list;
-  const totalPages = moviesObject?.payload?.films?.list?.total?.total_pages;
-  const totalResults = payload?.films?.list?.total?.total_results;
-  // const page = payload.films.list.total.page;
-
-  const handleChange = (value) => {
-    setPage(value);
-  };
 
   useEffect(() => {
     dispatch(searchMovies(title));
   }, [dispatch, title]);
-
-  const moviesArray = Object.keys(moviesList).map((key) => {
-    return moviesList[key];
-  });
-  console.log(moviesObject?.payload?.films?.list?.total?.page);
 
   const handleInput = (e) => {
     setTitle(e.target.value);
@@ -41,34 +29,33 @@ const Search = () => {
 
   return (
     <>
-      <div>
-        <input
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '& > :not(style)': { m: 1 },
+        }}
+      >
+        <TextField
+          helperText="Minimum of 3 characters"
+          id="demo-helper-text-misaligned"
+          label="Search a movie"
           type="text"
-          placeholder="...search a movie"
-          onChange={handleInput}
+          onInput={handleInput}
+          size="small"
         />
-      </div>
+      </Box>
       {title.length > 2 ? (
-        <ul>
-          {/* <p>Results: {totalResults}</p> */}
-          {moviesArray[0].map((movie) => (
-            <li className="" key={`search${movie.id}`}>
+        <ul className="card__list--container">
+          {moviesList.map((movie) => (
+            <li className="card__list--items" key={`search${movie.id}`}>
               <h2>{movie.title}</h2>
               <p>{movie.overview}</p>
               <span>popularity: {movie.popularity}</span>
             </li>
           ))}
         </ul>
-      ) : (
-        <span>Minimum of 3 characters</span>
-      )}
-      {title.length > 2 ? (
-        <Pagination
-          page={page}
-          onChange={handleChange}
-          count={500}
-          variant="outlined"
-        />
       ) : (
         ''
       )}

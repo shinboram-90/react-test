@@ -1,0 +1,34 @@
+/* <------------------- MOVIE STYLES ------------------->*/
+
+.card__movie {
+  width: 80%;
+  margin: 0 auto
+
+}
+
+.card__movie--content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+/* <------------------- MOVIE STYLES ------------------->*/
+
+
+/* <------------------- RESPONSIVE ------------------->*/
+
+@media screen and (max-width: 780px) {
+  .card__movie--container {
+   flex-direction: column;
+  }
+  .card__movie--img{
+   margin: 0 auto;
+  }
+}
+
+@media screen and (min-width:781px) {
+  .card__movie--img{
+    max-width: 350px;
+  }
+}
