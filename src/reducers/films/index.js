@@ -1,14 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getFilmsList } from '../../api/moviesdatabase';
+import { getFilmsList, searchMovieByTitle } from '../../api/moviesdatabase';
 
 const initialState = {
   list: [],
 };
 
-// call function that fetches the api and display data with dispatch, linking it to our slice
+// Call function that fetches the api and display data with dispatch, linking it to our slice
 export const fetchMovies = (page) => (dispatch) => {
   getFilmsList(page).then((data) => {
     dispatch(populateFilms(data));
+  });
+};
+
+export const searchMovies = (title) => (dispatch) => {
+  searchMovieByTitle(title).then((data) => {
+    dispatch(searchFilms(data));
   });
 };
 
@@ -17,10 +23,11 @@ export const filmsSlice = createSlice({
   initialState,
   reducers: {
     populateFilms: (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = true;
       state.list = action.payload.mList;
       state.total = action.payload.totalPages;
+    },
+    searchFilms: (state, action) => {
+      state.list = action.payload;
     },
   },
 });
@@ -28,6 +35,6 @@ export const filmsSlice = createSlice({
 // Action creators are generated for each case reducer function
 
 // TODO : exporter la slice :)
-export const { populateFilms } = filmsSlice.actions;
+export const { populateFilms, searchFilms } = filmsSlice.actions;
 
 export default filmsSlice.reducer;

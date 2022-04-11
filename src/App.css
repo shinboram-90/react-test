@@ -1,17 +1,44 @@
+/* <------------------- GLOBAL STYLES ------------------->*/
 .App {
   text-align: center;
 }
 
-
-.App a{
+.App a {
   text-decoration: none;
   color: rgb(0,0,0)
 }
 
-.App li{
+.App li {
 
 list-style: none;}
 
-.App ul{
+.App ul {
   padding: 0;
+}
+
+h1{
+  font-size: 1.5rem;
+}
+
+h2{
+  font-size: 1em;
+}
+
+p{
+  font-size: 0.8em;
+}
+
+section {
+  margin: 1rem;
+}
+/* <------------------- GLOBAL STYLES ------------------->*/
+
+
+/* <------------------- RESPONSIVE ------------------->*/
+
+
+@media screen and (min-width:900px) {
+  section {
+    margin: 0 8rem;
+  }
 }

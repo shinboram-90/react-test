@@ -1,0 +1,21 @@
+/* <------------------- LIST STYLES ------------------->*/
+.card__list--container{
+  margin-top: 2rem;
+}
+
+.card__list--items {
+  background-color: rgb(238,238,238);
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 10px;
+  border: solid 1px rgb(221,221,221);
+}
+
+.card__list--items:hover {
+  background-color: rgb(221,221,221);
+}
+
+.card__list--pagination {
+  display: flex;
+  justify-content: center;
+}
